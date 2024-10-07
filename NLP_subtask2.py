@@ -3,18 +3,18 @@ import nltk
 from nltk.tokenize import word_tokenize
 from nltk.stem import PorterStemmer, WordNetLemmatizer
 
-# Download necessary NLTK resources
+# Download  NLTK resources
 nltk.download('punkt')
 nltk.download('wordnet')
 
-# Step 1: Load the Data
-file_path = 'D:/technical task/all_data_scraped.csv'  # Update with your file path
+# Load the Data
+file_path = 'D:/technical task/all_data_scraped.csv'  # Update  file path
 df = pd.read_csv(file_path)
 
-# Step 2: Drop Unwanted Columns
+# Drop Unwanted Columns
 df.drop(columns=['Title', 'URL'], inplace=True)
 
-# Step 3: Handle Missing Values
+# Handle Missing Values
 print("Missing values before handling:")
 print(df.isnull().sum())
 
@@ -24,7 +24,7 @@ df.dropna(subset=['Content'], inplace=True)
 print("Missing values after handling:")
 print(df.isnull().sum())
 
-# Step 4: Text Processing Function
+# Text Processing Function
 def preprocess_text(text):
     # Tokenization
     tokens = word_tokenize(text.lower())
@@ -42,7 +42,7 @@ def preprocess_text(text):
 # Apply text preprocessing to the 'Content' column
 df['Processed_Content'] = df['Content'].apply(preprocess_text)
 
-# Optional: Remove original Content column if not needed anymore
+# Remove original Content column if not needed anymore
 df.drop(columns=['Content'], inplace=True)
 
 # Save cleaned data to a new CSV file
